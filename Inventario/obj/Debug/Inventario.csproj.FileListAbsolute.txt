@@ -1,0 +1,2 @@
+E:\ME.COM\c#\Inventario\Inventario\obj\Debug\Inventario.exe
+E:\ME.COM\c#\Inventario\Inventario\obj\Debug\Inventario.pdb
