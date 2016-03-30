@@ -1,0 +1,7 @@
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaPresentacion.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaPresentacion.pdb
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaNegocio.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaNegocio.pdb
+C:\Desarrollo\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.dll
+C:\Desarrollo\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.pdb

@@ -1,0 +1,7 @@
+C:\Desarrollo\Inventario\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Desarrollo\Inventario\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Desarrollo\Inventario\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Desarrollo\Inventario\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Desarrollo\Inventario\CapaNegocio\obj\Debug\CapaNegocio.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Inventario\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Desarrollo\Inventario\CapaNegocio\obj\Debug\CapaNegocio.pdb

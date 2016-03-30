@@ -1,0 +1,5 @@
+C:\Desarrollo\Inventario\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Desarrollo\Inventario\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Desarrollo\Inventario\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Inventario\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Desarrollo\Inventario\CapaDatos\obj\Debug\CapaDatos.pdb
