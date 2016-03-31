@@ -133,3 +133,4 @@ C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\es\DevExpress.XtraTreeList.v
 C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\ja\DevExpress.XtraTreeList.v15.1.resources.dll
 C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\ru\DevExpress.XtraTreeList.v15.1.resources.dll
 C:\Desarrollo\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.dll.licenses
+C:\Desarrollo\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.frmEmpleados.resources

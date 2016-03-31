@@ -17,5 +17,18 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void bbtnSalir_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void bbtnEmpleadosG_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmEmpleados FormEmpleados = new frmEmpleados();
+            FormEmpleados.MdiParent = this;
+            FormEmpleados.Show();
+        }
     }
 }

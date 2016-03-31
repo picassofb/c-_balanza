@@ -117,6 +117,7 @@
             this.bbtnEmpleadosG.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbtnEmpleadosG.LargeGlyph")));
             this.bbtnEmpleadosG.Name = "bbtnEmpleadosG";
             this.bbtnEmpleadosG.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbtnEmpleadosG.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnEmpleadosG_ItemClick);
             // 
             // bbtnTransportistaG
             // 
@@ -222,6 +223,7 @@
             this.bbtnSalir.Id = 20;
             this.bbtnSalir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbtnSalir.LargeGlyph")));
             this.bbtnSalir.Name = "bbtnSalir";
+            this.bbtnSalir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnSalir_ItemClick);
             // 
             // bbtnProductosG
             // 
@@ -319,12 +321,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 551);
+            this.ControlBox = false;
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl1);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IsMdiContainer = true;
             this.Name = "mdiPanel";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "mdiPanel";
+            this.Text = "..:: {ed} ::..";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

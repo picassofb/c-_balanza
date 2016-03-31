@@ -28,5 +28,18 @@ namespace Inventario
         public enum SplashScreenCommand
         {
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            CapaPresentacion.mdiPanel Panel = new CapaPresentacion.mdiPanel();
+            Panel.Show();
+
+            this.Hide();
+        }
     }
 }
