@@ -3,7 +3,6 @@ E:\ME.COM\c#\Inventario\Inventario\obj\Debug\Inventario.pdb
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.exe
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.pdb
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.csprojResolveAssemblyReference.cache
-C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.frmPanel.resources
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.Properties.Resources.resources
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.csproj.GenerateResource.Cache
 C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.exe.licenses
@@ -48,3 +47,4 @@ C:\Desarrollo\Inventario\Inventario\bin\Debug\de\DevExpress.XtraEditors.v15.1.re
 C:\Desarrollo\Inventario\Inventario\bin\Debug\es\DevExpress.XtraEditors.v15.1.resources.dll
 C:\Desarrollo\Inventario\Inventario\bin\Debug\ja\DevExpress.XtraEditors.v15.1.resources.dll
 C:\Desarrollo\Inventario\Inventario\bin\Debug\ru\DevExpress.XtraEditors.v15.1.resources.dll
+C:\Desarrollo\Inventario\Inventario\obj\Debug\Inventario.frmLogin.resources

@@ -20,7 +20,7 @@ namespace Inventario
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new frmPanel());
+            Application.Run(new frmLogin());
         }
     }
 }
