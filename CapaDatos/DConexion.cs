@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.OleDb;
 
 namespace CapaDatos
 {
-    public class Class1
+    class DConexion
     {
+        public static string Cn = Properties.Settings.Default.cn;
     }
 }
