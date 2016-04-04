@@ -29,7 +29,7 @@ namespace CapaDatos.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=dbbascula;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=ED\\SQLEXPRESS;Database=dbbascula;User Id=sa;Password=Inventario$$;")]
         public string cn
         {
             get

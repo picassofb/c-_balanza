@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace CapaDatos
 {
-    class DEmpleado
+    public class DEmpleado
     {
         //Getters & Setters
         public int idempleado { get; set; }
@@ -55,7 +55,35 @@ namespace CapaDatos
 
         public DataTable ListarEmpleados()
         {
+            DataTable TablaDatos = new DataTable("Empleados");
+            SqlConnection SqlCon = new SqlConnection();
             
+            try
+            {
+                SqlCon.ConnectionString = DConexion.Cn;
+                SqlCon.Open();
+
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "SELECT * FROM empleado"; // Cambiar por procedimientos o Entity Framework...
+                SqlCmd.CommandType = CommandType.Text;
+                SqlCmd.ExecuteNonQuery();
+
+                SqlDataAdapter SqlAdaptador = new SqlDataAdapter(SqlCmd);
+                SqlAdaptador.Fill(TablaDatos);
+
+             } 
+            catch(Exception ex)
+            {
+                TablaDatos = null;
+                throw new Exception("Error al ejecutar consulta \"Listar Empleados\" " + ex.Message, ex);
+            }   
+            finally
+            {
+                SqlCon.Close();
+            }
+
+            return TablaDatos;
         }
     }
 }
