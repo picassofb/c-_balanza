@@ -23,7 +23,7 @@ namespace CapaNegocio
             return empleado.Buscar(empleado);
         }
 
-        public static   String Insertar(String parNombres, String parApellidos,
+        public static   String[] Insertar(String parNombres, String parApellidos,
                         String parSexo, String parFechaNac, String parCiRuc, String parDireccion,
                         String parTelefono, String parEmail)
         {
@@ -39,5 +39,24 @@ namespace CapaNegocio
 
             return empleado.Insertar(empleado);
         }
+
+        public static String[] Editar(String parNombres, String parApellidos,
+                                    String parSexo, String parFechaNac, String parCiRuc, String parDireccion,
+                                    String parTelefono, String parEmail, string parId)
+        {
+            DEmpleado empleado = new DEmpleado();
+            empleado.nombres = parNombres;
+            empleado.apellidos = parApellidos;
+            empleado.sexo = parSexo;
+            empleado.fecha_nac = parFechaNac;
+            empleado.ci_ruc = parCiRuc;
+            empleado.direccion = parDireccion;
+            empleado.telefono = parTelefono;
+            empleado.email = parEmail;
+            empleado.idempleado = parId;
+
+            return empleado.Editar(empleado);
+        }
+
     }
 }

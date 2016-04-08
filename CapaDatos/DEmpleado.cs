@@ -113,7 +113,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 TablaDatos = null;
-                throw new Exception("Error al ejecutar consulta \"Listar Empleados\" " + ex.Message, ex);
+                throw new Exception("Error al ejecutar consulta \"Buscar Empleados\" " + ex.Message, ex);
             }
             finally
             {
@@ -123,9 +123,11 @@ namespace CapaDatos
             return TablaDatos;
         }
 
-        public string Insertar(DEmpleado parametroEmpleado)
+        public string[] Insertar(DEmpleado parametroEmpleado)
         {
-            string respuesta = string.Empty;
+            //string[] respuesta;
+            string[] respuesta = new string[2];
+
             SqlConnection sqlConexion = new SqlConnection();
 
             try
@@ -148,34 +150,91 @@ namespace CapaDatos
                 SqlComando.Parameters.AddWithValue("@direccion", parametroEmpleado.direccion);
                 SqlComando.Parameters.AddWithValue("@telefono", parametroEmpleado.telefono);
                 SqlComando.Parameters.AddWithValue("@email", parametroEmpleado.email);
-
                 SqlComando.ExecuteNonQuery();
-                respuesta = "Y";
+
+                SqlComando.CommandText = "SELECT IDENT_CURRENT('empleado')";
+                respuesta[1] = SqlComando.ExecuteScalar().ToString();
+                respuesta[0] = "Y";
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 8152)
-                {
-                    respuesta = "Has introducido demasiados caracteres en uno de los campos";
-                }
-                else if (ex.Number == 2627)
-                {
-                    respuesta = "Ya existe un cliente con ese Nombre";
-                }
-                else if (ex.Number == 515)
-                {
-                    respuesta = "Sólo puedes dejar vacíos los campos Nombre de Contacto, Región, País, Teléfono, Fax y Email";
-                }
-                else
-                {
-                    respuesta = "Error al intentar ejecutar la insercion del empleado. " + ex.Message;
-                }
+                respuesta[0] = Excepciones(ex);
             }
             finally
             {
                 if (sqlConexion.State == ConnectionState.Open) {
                     sqlConexion.Close();
                 }
+            }
+
+            return respuesta;
+        }
+
+        public string[] Editar(DEmpleado parametroEmpleado)
+        {
+            string[] respuesta = new string[2];
+            SqlConnection sqlConexion = new SqlConnection();
+
+            try
+            {
+                sqlConexion.ConnectionString = DConexion.Cn;
+                sqlConexion.Open();
+
+                SqlCommand SqlComando = new SqlCommand();
+                SqlComando.Connection = sqlConexion;
+                SqlComando.CommandText = "  update empleado set nombres=@nombres,apellidos=@apellidos, " +
+                                         "  sexo = @sexo,fecha_nac = @fecha_nac,ci_ruc = @ci_ruc, " +
+                                         "  direccion = @direccion,telefono = @telefono,email = @email " +
+                                         "  where idempleado = @idempleado";
+
+                SqlComando.Parameters.AddWithValue("@nombres", parametroEmpleado.nombres);
+                SqlComando.Parameters.AddWithValue("@apellidos", parametroEmpleado.apellidos);
+                SqlComando.Parameters.AddWithValue("@sexo", parametroEmpleado.sexo);
+                SqlComando.Parameters.AddWithValue("@fecha_nac", DateTime.Parse(parametroEmpleado.fecha_nac));
+                SqlComando.Parameters.AddWithValue("@ci_ruc", parametroEmpleado.ci_ruc);
+                SqlComando.Parameters.AddWithValue("@direccion", parametroEmpleado.direccion);
+                SqlComando.Parameters.AddWithValue("@telefono", parametroEmpleado.telefono);
+                SqlComando.Parameters.AddWithValue("@email", parametroEmpleado.email);
+                SqlComando.Parameters.AddWithValue("@idempleado", parametroEmpleado.idempleado);
+
+                SqlComando.ExecuteNonQuery();
+                respuesta[0] = "Y";
+            }
+            catch (SqlException ex)
+            {
+                respuesta[0] = Excepciones(ex);
+            }
+            finally
+            {
+                if (sqlConexion.State == ConnectionState.Open)
+                {
+                    sqlConexion.Close();
+                }
+            }
+
+            return respuesta;
+        }
+
+        private string Excepciones(SqlException ex)
+        {
+            string respuesta = string.Empty;
+
+            if (ex.Number == 8152)
+            {
+                respuesta = "Has introducido demasiados caracteres en uno de los campos";
+            }
+            else if (ex.Number == 2627)
+            {
+                respuesta = "Ya existe un cliente con ese Nombre";
+            }
+            else if (ex.Number == 515 || ex.Number == 547)
+            {
+                /*alter TABLE empleado  add CHECK(sexo <> '') */ //Agregar esto en la bdd 
+                respuesta = "Los campos con (*) no pueden quedar vacios";
+            }
+            else
+            {
+                respuesta = "Error al intentar ejecutar operacion con el empleado. -->> " + ex.Message;
             }
 
             return respuesta;

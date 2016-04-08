@@ -44,7 +44,7 @@ namespace CapaPresentacion
             gridViewEmpleados.Columns[10].Visible = false; //Acceso
             gridViewEmpleados.Columns[11].Visible = false; //Usuario
             gridViewEmpleados.Columns[12].Visible = false; //Clave
-            gridViewEmpleados.Columns[13].Caption = "Foto"; 
+            gridViewEmpleados.Columns[13].Visible = false; // foto 
 
             if (!gridControlEmpleados.IsPrintingAvailable)
                 MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
@@ -128,18 +128,30 @@ namespace CapaPresentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            String[] mensaje;
 
-            String mensaje = NEmpleado.Insertar(this.txtNombres.Text, this.txtApellidos.Text, this.cmbGenero.Text, this.dateFechaNacimiento.Text,
-                                                this.txtCedula.Text, this.memoDireccion.Text, this.txtTelefono.Text, this.txtEmail.Text);
-
-            if (mensaje == "Y")
+            if (this.txtId.Text == string.Empty)
             {
-                refrescar_grid();
-                Mensaje(String.Format("El Cliente {0} ha sido AGREGADO", this.txtNombres.Text));
+                mensaje = NEmpleado.Insertar(this.txtNombres.Text, this.txtApellidos.Text, this.cmbGenero.Text, this.dateFechaNacimiento.Text,
+                                             this.txtCedula.Text, this.memoDireccion.Text, this.txtTelefono.Text, this.txtEmail.Text);
+
+                if (mensaje[0] == "Y") this.txtId.Text = mensaje[1];
             }
             else
             {
-                MensajeError(mensaje);
+                mensaje = NEmpleado.Editar(this.txtNombres.Text, this.txtApellidos.Text, this.cmbGenero.Text, this.dateFechaNacimiento.Text,
+                                           this.txtCedula.Text, this.memoDireccion.Text, this.txtTelefono.Text, this.txtEmail.Text, this.txtId.Text);
+            }
+
+
+            if (mensaje[0] == "Y")
+            {
+                refrescar_grid();
+                Mensaje("Guardado con Exito");
+            }
+            else
+            {
+                MensajeError(mensaje[0]);
             }
         }
 

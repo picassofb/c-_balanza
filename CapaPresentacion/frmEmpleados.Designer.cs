@@ -36,6 +36,7 @@
             this.btnNuevo = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtId = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -60,12 +61,12 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.gridControlEmpleados = new DevExpress.XtraGrid.GridControl();
             this.gridViewEmpleados = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoDireccion.Properties)).BeginInit();
@@ -79,7 +80,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCedula.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmpleados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -193,6 +193,13 @@
             this.panel1.Size = new System.Drawing.Size(1030, 231);
             this.panel1.TabIndex = 1;
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(422, 44);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(196, 20);
+            this.txtEmail.TabIndex = 26;
+            // 
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -232,6 +239,7 @@
             this.pctFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctFoto.TabIndex = 22;
             this.pctFoto.TabStop = false;
+            this.pctFoto.Visible = false;
             // 
             // btnBuscarImagen
             // 
@@ -243,6 +251,7 @@
             this.btnBuscarImagen.Size = new System.Drawing.Size(82, 42);
             this.btnBuscarImagen.TabIndex = 21;
             this.btnBuscarImagen.Text = "Buscar";
+            this.btnBuscarImagen.Visible = false;
             this.btnBuscarImagen.Click += new System.EventHandler(this.btnBuscarImagen_Click);
             // 
             // labelControl4
@@ -253,6 +262,7 @@
             this.labelControl4.Size = new System.Drawing.Size(28, 13);
             this.labelControl4.TabIndex = 19;
             this.labelControl4.Text = "Foto:";
+            this.labelControl4.Visible = false;
             // 
             // labelControl3
             // 
@@ -283,6 +293,7 @@
             "Divorciado",
             "Viudo",
             "Unido"});
+            this.cmdEstadoCivil.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmdEstadoCivil.Size = new System.Drawing.Size(148, 20);
             this.cmdEstadoCivil.TabIndex = 15;
             // 
@@ -295,6 +306,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFechaNacimiento.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateFechaNacimiento.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dateFechaNacimiento.Size = new System.Drawing.Size(148, 20);
             this.dateFechaNacimiento.TabIndex = 14;
             // 
@@ -309,6 +321,7 @@
             this.cmbGenero.Properties.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
+            this.cmbGenero.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbGenero.Size = new System.Drawing.Size(148, 20);
             this.cmbGenero.TabIndex = 13;
             // 
@@ -416,12 +429,12 @@
             // gridControlEmpleados
             // 
             this.gridControlEmpleados.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gridControlEmpleados.Location = new System.Drawing.Point(0, 331);
+            this.gridControlEmpleados.Location = new System.Drawing.Point(0, 303);
             this.gridControlEmpleados.LookAndFeel.SkinName = "Office 2013";
             this.gridControlEmpleados.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControlEmpleados.MainView = this.gridViewEmpleados;
             this.gridControlEmpleados.Name = "gridControlEmpleados";
-            this.gridControlEmpleados.Size = new System.Drawing.Size(1048, 233);
+            this.gridControlEmpleados.Size = new System.Drawing.Size(1048, 261);
             this.gridControlEmpleados.TabIndex = 2;
             this.gridControlEmpleados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewEmpleados});
@@ -437,13 +450,6 @@
             this.gridViewEmpleados.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
             this.gridViewEmpleados.OptionsFind.AlwaysVisible = true;
             this.gridViewEmpleados.OptionsFind.FindNullPrompt = "Ingrese el texto a buscar...";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(422, 44);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(196, 20);
-            this.txtEmail.TabIndex = 26;
             // 
             // frmEmpleados
             // 
@@ -470,6 +476,7 @@
             this.panelControl2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoDireccion.Properties)).EndInit();
@@ -483,7 +490,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCedula.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmpleados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
