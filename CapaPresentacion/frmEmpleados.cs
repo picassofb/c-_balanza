@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 using CapaNegocio;
-
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.ViewInfo;
 
 namespace CapaPresentacion
 {
     public partial class frmEmpleados : DevExpress.XtraEditors.XtraForm
     {
+        
+
         public frmEmpleados()
         {
             InitializeComponent();
@@ -23,7 +27,10 @@ namespace CapaPresentacion
 
         private void frmEmpleados_Load(object sender, EventArgs e)
         {
-            gridControlEmpleados.DataSource = NEmpleado.ListarEmpleados();
+            limpiar_textos();
+
+            refrescar_grid();
+
             gridViewEmpleados.Columns[0].Caption = "Id";
             gridViewEmpleados.Columns[1].Caption = "CI / RUC";
             gridViewEmpleados.Columns[2].Caption = "Nombres";
@@ -41,10 +48,50 @@ namespace CapaPresentacion
 
             if (!gridControlEmpleados.IsPrintingAvailable)
                 MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
+ 
+            //gridControlEmpleados.ShowPrintPreview();*/
 
-            //gridControlEmpleados.ShowPrintPreview();
+            // Agrego Boton para seleccionar empleado de una fila y lo vinculo a un evento click para editar
+            DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoItemBtnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            DevExpress.XtraGrid.Columns.GridColumn selColumn = gridViewEmpleados.Columns[0];
+            gridViewEmpleados.GridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repoItemBtnEdit });
+            repoItemBtnEdit.AllowMouseWheel = false;
+            repoItemBtnEdit.AutoHeight = false;
+            repoItemBtnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton() });
+            repoItemBtnEdit.Name = "repoItemBtnEdit";
+            repoItemBtnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            repoItemBtnEdit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.OK;
+            repoItemBtnEdit.Buttons[1].Visible = false;
+            repoItemBtnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(Editar_ClickBoton);
+
+            selColumn.ColumnEdit = repoItemBtnEdit;
+
         }
 
+        private void refrescar_grid()
+        {
+            gridControlEmpleados.DataSource = NEmpleado.ListarEmpleados();
+        }
+
+        void Editar_ClickBoton(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            DataTable empleado = NEmpleado.BuscarPorId((sender as ButtonEdit).EditValue.ToString());
+            foreach (DataRow row in empleado.Rows)
+            {
+                this.txtId.Text = row["idempleado"].ToString();
+                this.txtCedula.Text = row["ci_ruc"].ToString();
+                this.txtNombres.Text = row["nombres"].ToString();
+                this.txtApellidos.Text = row["apellidos"].ToString();
+                this.cmbGenero.Text = row["sexo"].ToString();
+                this.cmdEstadoCivil.Text = row["estado_civil"].ToString();
+                this.dateFechaNacimiento.Text = row["fecha_nac"].ToString();
+                this.txtTelefono.Text = row["telefono"].ToString();
+                this.memoDireccion.Text = row["direccion"].ToString();
+                //this.pctFoto.Image = row["foto"];
+            }
+        }
+
+        
         private void btnBuscarImagen_Click(object sender, EventArgs e)
         {
             // Create OpenFileDialog
@@ -58,5 +105,53 @@ namespace CapaPresentacion
             }
             dlg.Dispose();
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            limpiar_textos();
+        }
+
+        private void limpiar_textos()
+        {
+            this.txtId.Text = null;
+            this.txtCedula.Text = null;
+            this.txtNombres.Text = null;
+            this.txtApellidos.Text = null;
+            this.cmbGenero.Text = null;
+            this.cmdEstadoCivil.Text = null;
+            this.dateFechaNacimiento.Text = null;
+            this.txtTelefono.Text = null;
+            this.memoDireccion.Text = null;
+            this.pctFoto.Image = CapaPresentacion.Properties.Resources.no_image;
+            this.txtCedula.Focus();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+            String mensaje = NEmpleado.Insertar(this.txtNombres.Text, this.txtApellidos.Text, this.cmbGenero.Text, this.dateFechaNacimiento.Text,
+                                                this.txtCedula.Text, this.memoDireccion.Text, this.txtTelefono.Text, this.txtEmail.Text);
+
+            if (mensaje == "Y")
+            {
+                refrescar_grid();
+                Mensaje(String.Format("El Cliente {0} ha sido AGREGADO", this.txtNombres.Text));
+            }
+            else
+            {
+                MensajeError(mensaje);
+            }
+        }
+
+        private void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void MensajeError(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
     }
 }

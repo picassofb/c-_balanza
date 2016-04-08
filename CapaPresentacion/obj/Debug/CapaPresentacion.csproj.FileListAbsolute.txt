@@ -396,3 +396,15 @@ E:\ME.COM\c#\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.Gener
 E:\ME.COM\c#\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.dll.licenses
 E:\ME.COM\c#\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 E:\ME.COM\c#\Inventario\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.ExpressApp.v15.1.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.ExpressApp.Xpo.v15.1.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.Persistent.Base.v15.1.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaDatos.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.ExpressApp.v15.1.xml
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.ExpressApp.Xpo.v15.1.xml
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\DevExpress.Persistent.Base.v15.1.xml
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\CapaDatos.pdb
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\de\DevExpress.ExpressApp.v15.1.resources.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\es\DevExpress.ExpressApp.v15.1.resources.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\ja\DevExpress.ExpressApp.v15.1.resources.dll
+C:\Desarrollo\Inventario\CapaPresentacion\bin\Debug\ru\DevExpress.ExpressApp.v15.1.resources.dll

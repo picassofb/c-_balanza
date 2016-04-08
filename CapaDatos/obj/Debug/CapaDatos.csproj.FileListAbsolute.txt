@@ -83,3 +83,4 @@ E:\ME.COM\c#\Inventario\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyRefer
 E:\ME.COM\c#\Inventario\CapaDatos\obj\Debug\CapaDatos.dll.licenses
 E:\ME.COM\c#\Inventario\CapaDatos\obj\Debug\CapaDatos.dll
 E:\ME.COM\c#\Inventario\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Desarrollo\Inventario\CapaDatos\bin\Debug\CapaDatos.dll.config
