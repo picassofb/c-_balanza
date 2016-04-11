@@ -26,10 +26,11 @@ namespace CapaDatos.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=ED\\SQLEXPRESS;Database=dbbascula;User Id=sa;Password=Inventario$$;")]
-        public string cn {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ED\\SQLEXPRESS;Initial Catalog=dbbascula;User ID=sa;Password=Inventari" +
+            "o$$")]
+        public string dbbasculaConnectionString {
             get {
-                return ((string)(this["cn"]));
+                return ((string)(this["dbbasculaConnectionString"]));
             }
         }
     }

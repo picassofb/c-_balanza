@@ -13,6 +13,8 @@ using CapaNegocio;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid;
 
 namespace CapaPresentacion
 {
@@ -28,7 +30,6 @@ namespace CapaPresentacion
         private void frmEmpleados_Load(object sender, EventArgs e)
         {
             limpiar_textos();
-
             refrescar_grid();
 
             gridViewEmpleados.Columns[0].Caption = "Id";
@@ -38,7 +39,7 @@ namespace CapaPresentacion
             gridViewEmpleados.Columns[4].Caption = "Sexo";
             gridViewEmpleados.Columns[5].Caption = "Estado Civil";
             gridViewEmpleados.Columns[6].Caption = "Fecha Nacimiento";
-            gridViewEmpleados.Columns[7].Caption = "Dirección";
+            gridViewEmpleados.Columns[7].Visible = false; //Direccion
             gridViewEmpleados.Columns[8].Caption = "Teléfono";
             gridViewEmpleados.Columns[9].Caption = "Email";
             gridViewEmpleados.Columns[10].Visible = false; //Acceso
@@ -46,25 +47,22 @@ namespace CapaPresentacion
             gridViewEmpleados.Columns[12].Visible = false; //Clave
             gridViewEmpleados.Columns[13].Visible = false; // foto 
 
-            if (!gridControlEmpleados.IsPrintingAvailable)
-                MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
- 
+            // if (!gridControlEmpleados.IsPrintingAvailable)
+            //    MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
             //gridControlEmpleados.ShowPrintPreview();*/
 
-            // Agrego Boton para seleccionar empleado de una fila y lo vinculo a un evento click para editar
-            DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoItemBtnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            DevExpress.XtraGrid.Columns.GridColumn selColumn = gridViewEmpleados.Columns[0];
-            gridViewEmpleados.GridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repoItemBtnEdit });
-            repoItemBtnEdit.AllowMouseWheel = false;
-            repoItemBtnEdit.AutoHeight = false;
-            repoItemBtnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton() });
-            repoItemBtnEdit.Name = "repoItemBtnEdit";
-            repoItemBtnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            repoItemBtnEdit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.OK;
-            repoItemBtnEdit.Buttons[1].Visible = false;
-            repoItemBtnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(Editar_ClickBoton);
-
-            selColumn.ColumnEdit = repoItemBtnEdit;
+            //AGREGAR COLUMNA CON BOTON PARA EDITAR
+            GridColumn columnaEditar = gridViewEmpleados.Columns.AddVisible("Editar", string.Empty);
+            columnaEditar.UnboundType = DevExpress.Data.UnboundColumnType.Object;
+            RepositoryItemButtonEdit repButton = new RepositoryItemButtonEdit();
+            repButton.Name = "repoBtnEditar";
+            repButton.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repButton.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Search;
+            repButton.Buttons[0].Image = CapaPresentacion.Properties.Resources.no_image;
+            gridViewEmpleados.GridControl.RepositoryItems.Add(repButton);
+            columnaEditar.ColumnEdit = repButton;
+            columnaEditar.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            repButton.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(Editar_ClickBoton);
 
         }
 
@@ -73,9 +71,14 @@ namespace CapaPresentacion
             gridControlEmpleados.DataSource = NEmpleado.ListarEmpleados();
         }
 
+
         void Editar_ClickBoton(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            DataTable empleado = NEmpleado.BuscarPorId((sender as ButtonEdit).EditValue.ToString());
+            int[] selRows = ((GridView)gridViewEmpleados.GridControl.MainView).GetSelectedRows();
+
+            DataRowView selRow = (DataRowView)(((GridView)gridViewEmpleados.GridControl.MainView).GetRow(selRows[0]));
+            DataTable empleado = NEmpleado.BuscarPorId(selRow["idempleado"].ToString());
+
             foreach (DataRow row in empleado.Rows)
             {
                 this.txtId.Text = row["idempleado"].ToString();
@@ -91,7 +94,6 @@ namespace CapaPresentacion
             }
         }
 
-        
         private void btnBuscarImagen_Click(object sender, EventArgs e)
         {
             // Create OpenFileDialog
@@ -165,5 +167,27 @@ namespace CapaPresentacion
             MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string[] mensaje;
+
+            if (this.txtId.Text != string.Empty)
+            {
+                if (MessageBox.Show("Está seguro de eliminar a " + this.txtNombres.Text + "?", "Eliminar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    mensaje = NEmpleado.Eliminar(this.txtId.Text);
+
+                    if (mensaje[0] == "Y")
+                    {
+                        refrescar_grid();
+                        Mensaje("Eliminado con Exito");
+                    }
+                    else
+                    {
+                        MensajeError(mensaje[0]);
+                    }
+                }
+            }
+        }
     }
 }

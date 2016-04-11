@@ -176,6 +176,7 @@
             this.bbtnEmpleadosL.Id = 14;
             this.bbtnEmpleadosL.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbtnEmpleadosL.LargeGlyph")));
             this.bbtnEmpleadosL.Name = "bbtnEmpleadosL";
+            this.bbtnEmpleadosL.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnEmpleadosL_ItemClick);
             // 
             // bbtnTransportistaL
             // 

@@ -23,6 +23,14 @@ namespace CapaNegocio
             return empleado.Buscar(empleado);
         }
 
+        public static string[] Eliminar(string idBuscado)
+        {
+            DEmpleado empleado = new DEmpleado();
+            empleado.idbuscado = idBuscado;
+            return empleado.Eliminar(empleado);
+        }
+
+
         public static   String[] Insertar(String parNombres, String parApellidos,
                         String parSexo, String parFechaNac, String parCiRuc, String parDireccion,
                         String parTelefono, String parEmail)

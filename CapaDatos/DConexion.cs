@@ -9,6 +9,6 @@ namespace CapaDatos
 {
     class DConexion
     {
-        public static string Cn = Properties.Settings.Default.cn;
+        public static string Cn = Properties.Settings.Default.dbbasculaConnectionString;
     }
 }

@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
+using DevExpress.XtraReports.UI;
+using CapaNegocio;
+using CapaDatos.Reportes;
 
 namespace CapaPresentacion
 {
@@ -29,6 +32,18 @@ namespace CapaPresentacion
             frmEmpleados FormEmpleados = new frmEmpleados();
             FormEmpleados.MdiParent = this;
             FormEmpleados.Show();
+        }
+
+        private void bbtnEmpleadosL_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Create a report. 
+            xrptEmpleados reporteEmpleados = new xrptEmpleados();
+
+            // Show the report's preview. 
+            ReportPrintTool tool = new ReportPrintTool(reporteEmpleados);
+            tool.PreviewForm.MdiParent = this;
+            tool.PreviewForm.WindowState = FormWindowState.Maximized;
+            tool.ShowPreview();
         }
     }
 }

@@ -69,7 +69,7 @@ namespace CapaDatos
 
                 SqlCommand SqlCmd = new SqlCommand();
                 SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "SELECT * FROM empleado"; // Cambiar por procedimientos o Entity Framework...
+                SqlCmd.CommandText = "SELECT * FROM empleado ORDER BY idempleado DESC"; // Cambiar por procedimientos o Entity Framework...
                 SqlCmd.CommandType = CommandType.Text;
                 SqlCmd.ExecuteNonQuery();
 
@@ -145,7 +145,12 @@ namespace CapaDatos
                 SqlComando.Parameters.AddWithValue("@nombres", parametroEmpleado.nombres);
                 SqlComando.Parameters.AddWithValue("@apellidos", parametroEmpleado.apellidos);
                 SqlComando.Parameters.AddWithValue("@sexo", parametroEmpleado.sexo);
-                SqlComando.Parameters.AddWithValue("@fecha_nac", parametroEmpleado.fecha_nac);
+
+                if(parametroEmpleado.fecha_nac.Count() > 0)
+                    SqlComando.Parameters.AddWithValue("@fecha_nac", DateTime.Parse(parametroEmpleado.fecha_nac));
+                else
+                    SqlComando.Parameters.AddWithValue("@fecha_nac", DBNull.Value);
+
                 SqlComando.Parameters.AddWithValue("@ci_ruc", parametroEmpleado.ci_ruc);
                 SqlComando.Parameters.AddWithValue("@direccion", parametroEmpleado.direccion);
                 SqlComando.Parameters.AddWithValue("@telefono", parametroEmpleado.telefono);
@@ -190,7 +195,12 @@ namespace CapaDatos
                 SqlComando.Parameters.AddWithValue("@nombres", parametroEmpleado.nombres);
                 SqlComando.Parameters.AddWithValue("@apellidos", parametroEmpleado.apellidos);
                 SqlComando.Parameters.AddWithValue("@sexo", parametroEmpleado.sexo);
-                SqlComando.Parameters.AddWithValue("@fecha_nac", DateTime.Parse(parametroEmpleado.fecha_nac));
+
+                if (parametroEmpleado.fecha_nac.Count() > 0)
+                    SqlComando.Parameters.AddWithValue("@fecha_nac", DateTime.Parse(parametroEmpleado.fecha_nac));
+                else
+                    SqlComando.Parameters.AddWithValue("@fecha_nac", DBNull.Value);
+
                 SqlComando.Parameters.AddWithValue("@ci_ruc", parametroEmpleado.ci_ruc);
                 SqlComando.Parameters.AddWithValue("@direccion", parametroEmpleado.direccion);
                 SqlComando.Parameters.AddWithValue("@telefono", parametroEmpleado.telefono);
@@ -214,6 +224,42 @@ namespace CapaDatos
 
             return respuesta;
         }
+
+        public string[] Eliminar(DEmpleado parametroEmpleado)
+        {
+            string[] respuesta = new string[2];
+            SqlConnection sqlConexion = new SqlConnection();
+
+            try
+            {
+                sqlConexion.ConnectionString = DConexion.Cn;
+                sqlConexion.Open();
+
+                SqlCommand SqlComando = new SqlCommand();
+                SqlComando.Connection = sqlConexion;
+                SqlComando.CommandText = "  DELETE FROM empleado" +
+                                         "  where idempleado = @idempleado";
+
+                SqlComando.Parameters.AddWithValue("@idempleado", parametroEmpleado.idbuscado);
+
+                SqlComando.ExecuteNonQuery();
+                respuesta[0] = "Y";
+            }
+            catch (SqlException ex)
+            {
+                respuesta[0] = Excepciones(ex);
+            }
+            finally
+            {
+                if (sqlConexion.State == ConnectionState.Open)
+                {
+                    sqlConexion.Close();
+                }
+            }
+
+            return respuesta;
+        }
+
 
         private string Excepciones(SqlException ex)
         {

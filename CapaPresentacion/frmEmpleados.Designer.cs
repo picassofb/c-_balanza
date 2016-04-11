@@ -61,6 +61,10 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.gridControlEmpleados = new DevExpress.XtraGrid.GridControl();
             this.gridViewEmpleados = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -125,6 +129,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(38, 36);
             this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
@@ -165,6 +170,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtEmail);
             this.panel1.Controls.Add(this.labelControl6);
             this.panel1.Controls.Add(this.txtId);
@@ -430,7 +439,7 @@
             // 
             this.gridControlEmpleados.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gridControlEmpleados.Location = new System.Drawing.Point(0, 303);
-            this.gridControlEmpleados.LookAndFeel.SkinName = "Office 2013";
+            this.gridControlEmpleados.LookAndFeel.SkinName = "Office 2013 Light Gray";
             this.gridControlEmpleados.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControlEmpleados.MainView = this.gridViewEmpleados;
             this.gridControlEmpleados.Name = "gridControlEmpleados";
@@ -445,11 +454,53 @@
             this.gridViewEmpleados.Name = "gridViewEmpleados";
             this.gridViewEmpleados.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridViewEmpleados.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewEmpleados.OptionsBehavior.AllowIncrementalSearch = true;
             this.gridViewEmpleados.OptionsBehavior.ReadOnly = true;
-            this.gridViewEmpleados.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
             this.gridViewEmpleados.OptionsFind.AlwaysVisible = true;
             this.gridViewEmpleados.OptionsFind.FindNullPrompt = "Ingrese el texto a buscar...";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(339, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "*";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(339, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(14, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "*";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(339, 102);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(14, 13);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "*";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(340, 135);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(14, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "*";
             // 
             // frmEmpleados
             // 
@@ -528,5 +579,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtEmail;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
